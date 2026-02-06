@@ -12,9 +12,15 @@ from config import DevelopmentConfig
 # ------------------------------------------------------------------
 
 app = Flask(__name__)
-app.config.from_object(DevelopmentConfig)
 
-app.secret_key = app.config["SECRET_KEY"]
+# Choose config based on environment
+env = os.environ.get("FLASK_ENV", "development")
+
+if env == "production":
+    app.config.from_object(ProductionConfig)
+else:
+    app.config.from_object(DevelopmentConfig)
+    
 app.config["MAX_CONTENT_LENGTH"] = app.config["MAX_CONTENT_LENGTH"]
 
 DB_PATH = app.config["DB_PATH"]
