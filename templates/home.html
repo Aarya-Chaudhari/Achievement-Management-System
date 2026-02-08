@@ -8,10 +8,8 @@
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
+  <button id="mode-toggle" class="theme-toggle" title="Toggle theme"></button>
 
-  <div class="toggle-container">
-    <button id="mode-toggle">Dark Mode 🌙</button>
-  </div>
 
   <!-- Main Home Container -->
   <div class="container home-container">
@@ -31,6 +29,38 @@
       </div>
     </div>
   </div>
+
+  <style>
+/* ===== Theme Toggle Button (Top Right) ===== */
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Dark mode support */
+body:not(.light-mode) .theme-toggle {
+  background: #1f1f1f;
+  color: #ffffff;
+}
+</style>
 
   <!-- FAQ SECTION ADDED -->
   <div class="container" style="margin-top:40px;">
